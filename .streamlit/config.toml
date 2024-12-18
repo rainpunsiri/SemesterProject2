@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#FF69B4"           # Hot Pink
+backgroundColor="#F8F9FA"        # Off White
+secondaryBackgroundColor="#D3D3D3" # Light Grey
+textColor="#2C2C2C"              # Dark Grey (almost black)
+font="sans serif"                # Sans Serif Font
