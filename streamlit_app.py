@@ -7,13 +7,13 @@ Original file is located at
     https://colab.research.google.com/drive/1wo0OE_jO99MH9UUQm3zeBmMWygbJmJWr
 """
 
-# Import necessary libraries
+#import libraries
 import streamlit as st
 import pandas as pd
 import requests
 import json
 
-# Change those IDs to readable names
+#change those IDs to readable names
 series_ids = ['LNS11000000', 'LNS13000000', 'LNS14000000', 'CES0000000001']
 series_names = {
     "LNS11000000": "Civilian Labor Force",
@@ -22,7 +22,6 @@ series_names = {
     "CES0000000001": "Total Nonfarm Employment"
 }
 
-# API headers and payload
 headers = {'Content-type': 'application/json'}
 payload = json.dumps({
     "seriesid": series_ids,
@@ -30,7 +29,7 @@ payload = json.dumps({
     "endyear": "2024"
 })
 
-# Fetch and process data
+#process data
 @st.cache_data(ttl="1d")
 def collect_and_process_data():
     response = requests.post(
@@ -60,7 +59,7 @@ def collect_and_process_data():
         df['Date'] = pd.to_datetime(df['Year'] + '-' + df['Month'], format='%Y-%m', errors='coerce')
         dataframes_dict[series_id] = df[['Date', 'Year', 'Month', 'Value']]
 
-    # Merge all datasets into one DataFrame
+    #merge datasets into one
     combined_df = dataframes_dict['LNS11000000'].rename(columns={'Value': 'Civilian Labor Force'})
     combined_df = combined_df.merge(
         dataframes_dict['LNS13000000'].rename(columns={'Value': 'Civilian Unemployment'}),
@@ -75,29 +74,41 @@ def collect_and_process_data():
 
     return combined_df, dataframes_dict
 
-# Fetch combined data
+#grab all the data
 combined_df, dataframes_dict = collect_and_process_data()
 
-# Streamlit App UI
+#Streamlit
 st.title("BLS Data Overview")
 st.write("Displaying key labor statistics retrieved from the BLS API.")
 
-# Display combined table with all four datasets
+#combined table with all four datasets
 st.markdown("## Combined Data Table")
 st.write("This table combines all four data series into one view.")
 st.dataframe(combined_df, height=500)  # Set a scrollable height for the box
 
-# Display raw data for each series
-st.markdown("## Raw Data Tables")
-for series_id, df in dataframes_dict.items():
-    st.subheader(series_names[series_id])
-    st.dataframe(df)
+st.markdown("## Download Data as CSV")
 
-# Download the combined table as a CSV
-st.markdown("## Download Combined Data as CSV")
+# combined data download
+st.subheader("Combined Data")
 st.download_button(
     label="Download Combined Data",
     data=combined_df.to_csv(index=False),
     file_name="combined_bls_data.csv",
     mime="text/csv"
 )
+
+# download button for each series
+st.subheader("Individual Data Series")
+for series_id, df in dataframes_dict.items():
+    st.download_button(
+        label=f"Download {series_names[series_id]}",
+        data=df.to_csv(index=False),
+        file_name=f"{series_names[series_id].replace(' ', '_').lower()}.csv",
+        mime="text/csv"
+    )
+
+# show raw data for each series
+st.markdown("## Raw Data Tables")
+for series_id, df in dataframes_dict.items():
+    st.subheader(series_names[series_id])
+    st.dataframe(df)
