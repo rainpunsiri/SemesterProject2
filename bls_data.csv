@@ -1,5 +1,6 @@
 date,value,series_name
-2025-04-01,171109.0,Civilian Labor Force
+2025-05-01,170510.0,Civilian Labor Force
+2025-04-01,171135.0,Civilian Labor Force
 2025-03-01,170591.0,Civilian Labor Force
 2025-02-01,170359.0,Civilian Labor Force
 2025-01-01,170744.0,Civilian Labor Force
@@ -135,7 +136,8 @@ date,value,series_name
 2014-03-01,156028.0,Civilian Labor Force
 2014-02-01,155483.0,Civilian Labor Force
 2014-01-01,155352.0,Civilian Labor Force
-2025-04-01,7165.0,Civilian Unemployment
+2025-05-01,7237.0,Civilian Unemployment
+2025-04-01,7166.0,Civilian Unemployment
 2025-03-01,7083.0,Civilian Unemployment
 2025-02-01,7052.0,Civilian Unemployment
 2025-01-01,6849.0,Civilian Unemployment
@@ -271,6 +273,7 @@ date,value,series_name
 2014-03-01,10380.0,Civilian Unemployment
 2014-02-01,10349.0,Civilian Unemployment
 2014-01-01,10202.0,Civilian Unemployment
+2025-05-01,4.2,Unemployment Rate
 2025-04-01,4.2,Unemployment Rate
 2025-03-01,4.2,Unemployment Rate
 2025-02-01,4.1,Unemployment Rate
@@ -407,8 +410,9 @@ date,value,series_name
 2014-03-01,6.7,Unemployment Rate
 2014-02-01,6.7,Unemployment Rate
 2014-01-01,6.6,Unemployment Rate
-2025-04-01,159517.0,Total Nonfarm Employment
-2025-03-01,159340.0,Total Nonfarm Employment
+2025-05-01,159561.0,Total Nonfarm Employment
+2025-04-01,159422.0,Total Nonfarm Employment
+2025-03-01,159275.0,Total Nonfarm Employment
 2025-02-01,159155.0,Total Nonfarm Employment
 2025-01-01,159053.0,Total Nonfarm Employment
 2024-12-01,158942.0,Total Nonfarm Employment
